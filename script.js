@@ -18,7 +18,7 @@ const topLogoutBtn = document.getElementById('topLogoutBtn');
 const sideLogoutBtn = document.getElementById('sideLogoutBtn');
 const toggleNumBtn = document.getElementById('toggleNumBtn');
 const accountNumText = document.getElementById('accountNumText');
-const demoAlertBanner = document.getElementById('demoAlertBanner');
+const dormantAlertBanner = document.getElementById('dormantAlertBanner');
 
 // ==========================================================================
 // FORM SUBMISSION & ROUTING CONTROLS
@@ -52,7 +52,7 @@ function processLogout() {
     loginScreen.style.display = 'flex';
     
     // Reset warning banner states if open
-    demoAlertBanner.style.display = 'none';
+    dormantAlertBanner.style.display = 'none';
     if(alertTimeoutId) clearTimeout(alertTimeoutId);
 }
 
@@ -94,7 +94,7 @@ document.querySelectorAll('.nav-item').forEach(item => {
         this.classList.add('active');
 
         // Reveal the red warning banner immediately
-        demoAlertBanner.style.display = 'block';
+        dormantAlertBanner.style.display = 'block';
 
         // Clear any running countdowns so timers don't conflict on rapid menu clicks
         if (alertTimeoutId) {
@@ -103,7 +103,7 @@ document.querySelectorAll('.nav-item').forEach(item => {
 
         // Set an automated countdown to smoothly hide the alert banner after 4 seconds
         alertTimeoutId = setTimeout(() => {
-            demoAlertBanner.style.display = 'none';
+            dormantAlertBanner.style.display = 'none';
         }, 4000);
     });
 });
