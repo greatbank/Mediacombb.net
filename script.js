@@ -53,7 +53,7 @@ sideLogoutBtn.addEventListener('click', processLogout);
 // ==========================================================================
 toggleNumBtn.addEventListener('click', function() {
     if (isNumHidden) {
-        accountNumText.innerText = "123456785894";
+        accountNumText.innerText = "685785894";
         toggleNumBtn.innerText = "Hide";
         isNumHidden = false;
     } else {
