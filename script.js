@@ -18,7 +18,7 @@ const topLogoutBtn = document.getElementById('topLogoutBtn');
 const sideLogoutBtn = document.getElementById('sideLogoutBtn');
 const toggleNumBtn = document.getElementById('toggleNumBtn');
 const accountNumText = document.getElementById('accountNumText');
-const dormantAlertBanner = document.getElementById('dormantAlertBanner');
+const demoAlertBanner = document.getElementById('demoAlertBanner');
 
 // ==========================================================================
 // FORM SUBMISSION & ROUTING CONTROLS
@@ -28,18 +28,7 @@ const dormantAlertBanner = document.getElementById('dormantAlertBanner');
 loginForm.addEventListener('submit', function(event) {
     event.preventDefault(); // Hold execution for presentation flow
     
-    const inputName = usernameInput.value;
-    
-    // Dynamically re-write design components using the field string data
-    if (inputName.trim() !== "") {
-        displayFullName.innerText = inputName;
-        pillUserName.innerText = inputName;
-        tableRowName.innerText = inputName;
-        // Transform spaces into standard data-mock username labels
-        displayUsername.innerText = inputName.toLowerCase().replace(/\s+/g, '.');
-    }
-
-    // Toggle viewport presentation blocks
+    // The display fields are now completely hardlocked to "Demo User"
     loginScreen.style.display = 'none';
     dashboardScreen.style.display = 'flex';
 });
@@ -52,7 +41,7 @@ function processLogout() {
     loginScreen.style.display = 'flex';
     
     // Reset warning banner states if open
-    dormantAlertBanner.style.display = 'none';
+    demoAlertBanner.style.display = 'none';
     if(alertTimeoutId) clearTimeout(alertTimeoutId);
 }
 
@@ -64,7 +53,7 @@ sideLogoutBtn.addEventListener('click', processLogout);
 // ==========================================================================
 toggleNumBtn.addEventListener('click', function() {
     if (isNumHidden) {
-        accountNumText.innerText = "982785894";
+        accountNumText.innerText = "123456785894";
         toggleNumBtn.innerText = "Hide";
         isNumHidden = false;
     } else {
@@ -93,8 +82,11 @@ document.querySelectorAll('.nav-item').forEach(item => {
         document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
         this.classList.add('active');
 
+        // Update banner text dynamically to use your new custom message string
+        demoAlertBanner.innerText = "⚠️ This feature can't be used right now.";
+
         // Reveal the red warning banner immediately
-        dormantAlertBanner.style.display = 'block';
+        demoAlertBanner.style.display = 'block';
 
         // Clear any running countdowns so timers don't conflict on rapid menu clicks
         if (alertTimeoutId) {
@@ -103,7 +95,7 @@ document.querySelectorAll('.nav-item').forEach(item => {
 
         // Set an automated countdown to smoothly hide the alert banner after 4 seconds
         alertTimeoutId = setTimeout(() => {
-            dormantAlertBanner.style.display = 'none';
+            demoAlertBanner.style.display = 'none';
         }, 4000);
     });
 });
